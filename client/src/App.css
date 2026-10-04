@@ -1,0 +1,793 @@
+/* ================================
+   NutriVision - Modern AI UI
+   ================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(80, 200, 140, 0.14), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(100, 120, 255, 0.10), transparent 30%),
+    #f4f8f5;
+  color: #17221b;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* ================================
+   Header
+   ================================ */
+
+.header {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(80, 220, 150, 0.25), transparent 30%),
+    linear-gradient(135deg, #103d29, #17643e 55%, #15946a);
+  color: white;
+  padding: 55px 20px;
+  box-shadow: 0 10px 35px rgba(16, 61, 41, 0.22);
+}
+
+.header::before,
+.header::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.header::before {
+  width: 220px;
+  height: 220px;
+  right: -70px;
+  top: -100px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.header::after {
+  width: 140px;
+  height: 140px;
+  left: 8%;
+  bottom: -100px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.header h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(32px, 5vw, 46px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  animation: fadeDown 0.7s ease;
+}
+
+.header p {
+  position: relative;
+  z-index: 1;
+  margin: 10px 0 0;
+  font-size: 17px;
+  opacity: 0.86;
+  animation: fadeUp 0.8s ease;
+}
+
+/* ================================
+   Main
+   ================================ */
+
+.container {
+  width: min(1050px, 92%);
+  margin: 38px auto;
+}
+
+section {
+  position: relative;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(210, 225, 215, 0.8);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 26px;
+  box-shadow:
+    0 15px 45px rgba(30, 65, 45, 0.08),
+    0 2px 8px rgba(30, 65, 45, 0.04);
+  animation: sectionAppear 0.7s ease both;
+  backdrop-filter: blur(10px);
+}
+
+/* ================================
+   Upload
+   ================================ */
+
+.upload-card {
+  text-align: center;
+  overflow: hidden;
+}
+
+.upload-icon {
+  display: inline-block;
+  font-size: 54px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.upload-card h2 {
+  margin: 12px 0 8px;
+  font-size: 28px;
+  color: #173d2b;
+}
+
+.upload-card > p {
+  color: #68756d;
+  font-size: 15px;
+}
+
+.upload-placeholder {
+  border: 2px dashed #a9cdb6;
+  border-radius: 20px;
+  padding: 55px 20px;
+  margin: 28px 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 249, 239, 0.8),
+      rgba(246, 250, 248, 0.9)
+    );
+  transition: all 0.3s ease;
+}
+
+.upload-placeholder:hover {
+  border-color: #24a566;
+  background: #effaf3;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(34, 160, 100, 0.10);
+}
+
+.upload-placeholder span {
+  display: inline-block;
+  font-size: 48px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.upload-placeholder p {
+  color: #68756d;
+}
+
+.meal-preview {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 25px 0;
+  box-shadow: 0 12px 35px rgba(25, 65, 42, 0.15);
+  animation: imageReveal 0.5s ease;
+}
+
+/* ================================
+   Buttons
+   ================================ */
+
+.upload-button,
+.analyze-button {
+  display: inline-block;
+  border: none;
+  border-radius: 13px;
+  padding: 13px 22px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.upload-button {
+  background: linear-gradient(135deg, #e2f7e9, #d4f2df);
+  color: #17633c;
+  box-shadow: 0 6px 18px rgba(35, 140, 85, 0.10);
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #d7f3e1, #c9eed7);
+  box-shadow: 0 10px 24px rgba(35, 140, 85, 0.16);
+}
+
+.analyze-button {
+  display: block;
+  margin: 18px auto 0;
+  min-width: 180px;
+  background: linear-gradient(135deg, #15945f, #21b875);
+  color: white;
+  box-shadow: 0 9px 22px rgba(21, 148, 95, 0.28);
+}
+
+.analyze-button:hover {
+  box-shadow: 0 13px 30px rgba(21, 148, 95, 0.38);
+}
+
+.analyze-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.file-name {
+  font-size: 14px;
+  color: #64736a;
+  margin-top: 12px;
+}
+
+/* ================================
+   Section Heading
+   ================================ */
+
+.section-heading {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.section-heading > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  font-size: 28px;
+  background: linear-gradient(135deg, #e2f7e9, #edf5ff);
+  box-shadow: 0 6px 16px rgba(40, 100, 70, 0.08);
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #193d2b;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.section-heading p {
+  margin: 5px 0 0;
+  color: #758079;
+  font-size: 14px;
+}
+
+.meal-name {
+  margin: 28px 0 18px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 800;
+  color: #183d29;
+}
+
+/* ================================
+   Nutrition
+   ================================ */
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.nutrition-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f5faf6, #edf6f0);
+  border: 1px solid #dfebe2;
+  border-radius: 18px;
+  padding: 23px 15px;
+  text-align: center;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nutrition-card::before {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: -35px;
+  right: -30px;
+  border-radius: 50%;
+  background: rgba(35, 170, 105, 0.08);
+}
+
+.nutrition-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(30, 90, 55, 0.12);
+}
+
+.nutrition-card span {
+  position: relative;
+  display: block;
+  font-size: 29px;
+  margin-bottom: 10px;
+}
+
+.nutrition-card strong {
+  position: relative;
+  display: block;
+  font-size: 28px;
+  color: #173d2b;
+}
+
+.nutrition-card small {
+  position: relative;
+  display: block;
+  color: #68766e;
+  margin-top: 5px;
+}
+
+/* ================================
+   Foods
+   ================================ */
+
+.foods {
+  margin-top: 32px;
+}
+
+.foods h3 {
+  margin-bottom: 10px;
+  color: #244a34;
+}
+
+.food-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5ebe6;
+  padding: 15px 5px;
+  transition: padding 0.2s ease, background 0.2s ease;
+}
+
+.food-row:hover {
+  padding-left: 12px;
+  padding-right: 12px;
+  background: #f7faf8;
+  border-radius: 10px;
+}
+
+.disclaimer {
+  margin-top: 23px;
+  padding: 15px 17px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fff8dc, #fff4ca);
+  border: 1px solid #f3e5ad;
+  color: #705d19;
+  font-size: 14px;
+}
+
+/* ================================
+   Chat
+   ================================ */
+
+.chat-box {
+  min-height: 190px;
+  margin-top: 20px;
+  background: linear-gradient(145deg, #f5f8f6, #f1f6f3);
+  border: 1px solid #e2ebe5;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.empty-chat {
+  text-align: center;
+  color: #68766e;
+}
+
+.empty-chat > span {
+  display: block;
+  font-size: 44px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.suggestions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.suggestions button {
+  border: 1px solid #c9ddd0;
+  background: white;
+  color: #31523d;
+  border-radius: 22px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.suggestions button:hover {
+  border-color: #25a96b;
+  background: #effaf4;
+  box-shadow: 0 5px 15px rgba(30, 150, 90, 0.10);
+}
+
+.user-message {
+  width: fit-content;
+  max-width: 80%;
+  margin-left: auto;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #168f5b, #22b776);
+  color: white;
+  padding: 13px 17px;
+  border-radius: 18px 18px 5px 18px;
+  box-shadow: 0 7px 18px rgba(22, 143, 91, 0.18);
+  animation: messageAppear 0.3s ease;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.chat-input input {
+  flex: 1;
+  border: 1px solid #ccd9d0;
+  border-radius: 13px;
+  padding: 14px;
+  outline: none;
+  background: white;
+
+  /* Make typed text clearly visible */
+  color: #17221b;
+  caret-color: #168f5b;
+  font-size: 16px;
+
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.chat-input input::placeholder {
+  color: #7a857e;
+  opacity: 1;
+}
+
+.chat-input input:focus {
+  border-color: #24a96b;
+  box-shadow: 0 0 0 4px rgba(36, 169, 107, 0.10);
+}
+
+.chat-input button {
+  border: none;
+  background: linear-gradient(135deg, #168f5b, #22b776);
+  color: white;
+  padding: 0 24px;
+  border-radius: 13px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 7px 18px rgba(22, 143, 91, 0.20);
+}
+
+.chat-input button:hover {
+  box-shadow: 0 10px 24px rgba(22, 143, 91, 0.30);
+}
+
+/* ================================
+   Summary
+   ================================ */
+
+.summary-placeholder {
+  background: linear-gradient(145deg, #f5f7fc, #f2f5fb);
+  border: 1px solid #e2e7f2;
+  border-radius: 16px;
+  padding: 27px;
+  margin-top: 20px;
+  color: #69747e;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.summary-button,
+.whatsapp-button {
+  border: none;
+  padding: 13px 19px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.summary-button {
+  background: linear-gradient(135deg, #e9efff, #dfe8ff);
+  color: #315b9c;
+  box-shadow: 0 6px 15px rgba(49, 91, 156, 0.08);
+}
+
+.whatsapp-button {
+  background: linear-gradient(135deg, #dcf6e5, #d0f1dc);
+  color: #176332;
+  box-shadow: 0 6px 15px rgba(23, 99, 50, 0.08);
+}
+
+.summary-button:hover,
+.whatsapp-button:hover {
+  box-shadow: 0 10px 22px rgba(40, 70, 60, 0.13);
+}
+
+/* ================================
+   Footer
+   ================================ */
+
+footer {
+  text-align: center;
+  padding: 35px;
+  color: #727d76;
+  font-size: 14px;
+}
+
+/* ================================
+   Animations
+   ================================ */
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sectionAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* ================================
+   Responsive
+   ================================ */
+
+@media (max-width: 800px) {
+  .nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  section {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 40px 18px;
+  }
+
+  .container {
+    width: 94%;
+    margin: 25px auto;
+  }
+
+  section {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .nutrition-card {
+    padding: 18px 10px;
+  }
+
+  .nutrition-card strong {
+    font-size: 23px;
+  }
+
+  .food-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .summary-actions {
+    flex-direction: column;
+  }
+
+  .chat-input {
+    flex-direction: column;
+  }
+
+  .chat-input button {
+    padding: 13px;
+  }
+
+  .user-message {
+    max-width: 90%;
+  }
+}
+/* ================================
+   CHAT MESSAGE STYLING
+   ================================ */
+
+.chat-message {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 16px;
+  animation: messageAppear 0.35s ease;
+}
+
+.message-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+/* User messages on the right */
+.user-message {
+  justify-content: flex-end;
+}
+
+.user-message .message-icon {
+  order: 2;
+  background: #dff7eb;
+}
+
+.user-message .message-content {
+  order: 1;
+  max-width: 70%;
+  padding: 13px 17px;
+  border-radius: 18px 18px 4px 18px;
+  background: linear-gradient(135deg, #159957, #25b978);
+  color: white;
+  box-shadow: 0 5px 15px rgba(21, 153, 87, 0.18);
+}
+
+/* AI messages on the left */
+.assistant-message {
+  justify-content: flex-start;
+}
+
+.assistant-message .message-icon {
+  background: #eef4ff;
+}
+
+.assistant-message .message-content {
+  max-width: 70%;
+  padding: 13px 17px;
+  border-radius: 18px 18px 18px 4px;
+  background: white;
+  color: #26352d;
+  border: 1px solid #e0e9e3;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* Small-screen adjustment */
+@media (max-width: 600px) {
+  .user-message .message-content,
+  .assistant-message .message-content {
+    max-width: 82%;
+  }
+
+  .message-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
+/* ================================
+   CONVERSATION SUMMARY
+   ================================ */
+
+.summary-result {
+  margin-top: 20px;
+  padding: 24px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f7fff9, #eefaf3);
+  border: 1px solid #d8eee0;
+  box-shadow: 0 8px 25px rgba(20, 120, 70, 0.08);
+  animation: fadeUp 0.5s ease;
+}
+
+.summary-result pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #26352d;
+}
