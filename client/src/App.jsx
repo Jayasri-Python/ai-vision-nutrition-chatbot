@@ -29,7 +29,7 @@ console.log("ANALYZE BUTTON CLICKED:", image?.name);
     const formData = new FormData();
     formData.append("meal", image);
 
-    const response = await fetch("http://localhost:5000/api/analyze", {
+    const response = await fetch("https://ai-vision-nutrition-chatbot.onrender.com/api/analyze", {
       method: "POST",
       body: formData,
     });
@@ -65,7 +65,7 @@ console.log("ANALYZE BUTTON CLICKED:", image?.name);
   setMessage("");
 
   try {
-    const response = await fetch("http://localhost:5000/api/chat", {
+    const response = await fetch("https://ai-vision-nutrition-chatbot.onrender.com/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
